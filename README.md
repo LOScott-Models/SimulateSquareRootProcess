@@ -8,4 +8,4 @@ freedom parameter is greater than or equal to 1.  If the degrees of freedom are 
 a quadratic normal.
 
 This repository contains the C++ code for running the 3 simulations methods and the simple Euler approximation, as well as the statistical 
-tests for the simulations.  Executables for Windows and Linux and data input files are also included.
+tests for the simulations.
