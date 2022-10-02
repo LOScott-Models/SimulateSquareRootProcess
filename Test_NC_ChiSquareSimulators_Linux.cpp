@@ -18,7 +18,7 @@
 #include <sstream>
 #include <math.h>
 #include <boost/math/distributions/non_central_chi_squared.hpp>
-#include "ncChiSquaredSimulation_MRG32k3a.hpp"
+#include "ncChiSquaredSimulation_MRG32k3a_Linux.hpp"
 #include <sys/timeb.h>
 #include <time.h>
 #include <algorithm>    // std::sort
