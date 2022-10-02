@@ -140,14 +140,16 @@ int main()
 //	set fixed parameters for non central chi squared simulation
 	setchi2params(df, vb, vd, vp, nvexp, is_int, is_half_int);
 
-	printf(" Running quadratic approximation, with mixed Beta-Non-Central Chi Squared(1) (QB) \n");
 	printf(" df_term %16.10e  df %12.6e \n", df_term, df);
 	if (df_term <= 0.0 && df_term > -1.0e-15) {
 		df_term = 0.0;
 		printf(" Adjusting df_term to be exactly 0.0 in double precision, %12.6e \n", 
 				df_term);
 	}
-
+	
+	//	quadratic beta (QB) approximation
+	printf(" Running quadratic approximation, with mixed beta-non-nentral chi squared-1 (QB) \n");
+	
 	_ftime64_s(&timebuffer);
 	time0 = timebuffer.time + timebuffer.millitm / 1000.0;
 
@@ -170,32 +172,14 @@ int main()
 		Sims[i] = x;
 	}
 
-	printf(" Running simple Euler approximation \n");
+	_ftime64_s(&timebuffer);
+	time1 = timebuffer.time + timebuffer.millitm / 1000.0;
+	time1 = time1 - time0;
+	
+	//	Andersen's quadratic exponential (QE) approximation
 	//	reset initial seeds so that Andersen's method uses same seeds as QB method
 	for (i = 0; i < 6; i++) rdseed[i] = iseed[i];
 
-	//	Simulate the non central chi squared distribution
-	_ftime64_s(&timebuffer);
-	time0 = timebuffer.time + timebuffer.millitm / 1000.0;
-
-	for (i = 0; i < nSim; i++) {
-		x = x0;
-		for (iT = 0; iT < nT; iT++) {
-			for (jT = 0; jT < nTimeStepsPerDay; jT++) {
-			//	x = (kappa * theta - (kappa + lambda) * x) * dt + sigma * sqrt(x * dt) * sninvdev(tdseed);
-			//	use exact discrete time solution for mean
-				x = b * x + kappa * theta * term1_dt + sigma * sqrt(x * dt) * sninvdev(rdseed);
-				if (x < 0.0) x = 0.0;
-			}
-		}
-		Sims[2 * nSim + i] = x;
-	}
-
-	_ftime64_s(&timebuffer);
-	time2 = timebuffer.time + timebuffer.millitm / 1000.0;
-	time2 = time2 - time0;
-
-//	Andersen's quadratic exponential approximation
 	printf(" Running Andersen's quadratic exponential approximation (QE) \n");
 	QE_sig_dt2 = sigma * sigma * term1_dt;
 
@@ -218,10 +202,32 @@ int main()
 	_ftime64_s(&timebuffer);
 	time4 = timebuffer.time + timebuffer.millitm / 1000.0;
 	time4 = time4 - time0;
+	
+	//	Euler approximation
+	printf(" Running simple Euler approximation \n");
+	//	reset initial seeds so that Euler method uses same seeds as QB method
+	for (i = 0; i < 6; i++) rdseed[i] = iseed[i];
+
+	//	Simulate the non central chi squared distribution
+	_ftime64_s(&timebuffer);
+	time0 = timebuffer.time + timebuffer.millitm / 1000.0;
+
+	for (i = 0; i < nSim; i++) {
+		x = x0;
+		for (iT = 0; iT < nT; iT++) {
+			for (jT = 0; jT < nTimeStepsPerDay; jT++) {
+			//	x = (kappa * theta - (kappa + lambda) * x) * dt + sigma * sqrt(x * dt) * sninvdev(tdseed);
+			//	use exact discrete time solution for mean
+				x = b * x + kappa * theta * term1_dt + sigma * sqrt(x * dt) * sninvdev(rdseed);
+				if (x < 0.0) x = 0.0;
+			}
+		}
+		Sims[2 * nSim + i] = x;
+	}
 
 	_ftime64_s(&timebuffer);
-	time1 = timebuffer.time + timebuffer.millitm / 1000.0;
-	time1 = time1 - time0;
+	time2 = timebuffer.time + timebuffer.millitm / 1000.0;
+	time2 = time2 - time0;
 
 	printf(" Running simulation of nc chi squared distribution over time steps; this can be slow \n");
 
