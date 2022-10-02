@@ -14,5 +14,5 @@ Windows.  To run the full set of statistics, one must download and include the B
 chi squared function is used to calculate the cumulative distribution function.  The .sln and .vcxproj are the files that can be used on 
 Windows to build the executable in Visual Studio.  The file Test_NC_ChiSquareSimulators_Linux.cpp is the version of the C++ code with a main 
 program to run on Linux systems.  The file ncChiSquaredSimulation_MRG32k3a_Linux.hpp is the version of the header file that runs on Linux.
-To build on Linux, download the ...Linux.cpp and ...Linux.hpp files as well as the .csv parameter file and build.  I use Eclipse.
+To build on Linux, download the two Linux files (.cpp and .hpp) as well as the .csv parameter file and build.  I use Eclipse.
 
