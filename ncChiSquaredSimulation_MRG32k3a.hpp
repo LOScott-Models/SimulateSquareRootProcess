@@ -84,9 +84,9 @@ double simulateQE(double x0, unsigned int seed[], double b, double QE_sig_dt2,
 	double dfterm2)
 {	
 //	Simulate a non-central chi-squared for x, using Andersen QE method
-//	See Andersen, L. (2008), “Simple and efficient simulation of the Heston
-//	stochastic volatility model,” Journal of Computational Finance 11 (3): 1–42
-//	and Andersen, L., P. Jackel, C. Kahl, “Simulation of Square?Root Processes,”
+//	See Andersen, L. (2008), â€œSimple and efficient simulation of the Heston
+//	stochastic volatility model,â€ Journal of Computational Finance 11 (3): 1â€“42
+//	and Andersen, L., P. Jackel, C. Kahl, â€œSimulation of Square?Root Processes,â€
 //	chapter in Encyclopedia of Quantitative Finance, May 2010
 
 	double x, tem, QE_m, QE_s2, QE_psi, QE_a, QE_b2, QE_b, QE_p, QE_beta;
@@ -209,8 +209,8 @@ double rand_u01(unsigned int seed[])
 //	integer seeds are performed with 64 bit integers (long long), and results are
 //	stored as 32 bit unsigned integers (unsigned int).  Integer calculations are 
 //	faster if using 64 bit configuration (x64) in Release mode (O2 optimization)
-//	See L’Ecuyer, P. (1999), “Good Parameters and Implementations for Combined 
-//	Multiple Recur-sive Random Number Generators,” Operations Research 47(1):159-164
+//	See Lâ€™Ecuyer, P. (1999), â€œGood Parameters and Implementations for Combined 
+//	Multiple Recur-sive Random Number Generators,â€ Operations Research 47(1):159-164
 
 	double f;
 	long long lp1, lp2;
@@ -420,7 +420,7 @@ double rand_log_u_compl(unsigned int seed[])
 
 	if (seed[0] <= seed[3]) {
 		u = (double((seed[0] - seed[3]) + im1) * norm);
-		u_compl = u_compl = (double(seed[3] - seed[0]) * norm);
+		u_compl = (double(seed[3] - seed[0]) * norm);
 	}
 	else {
 		u = (double(seed[0] - seed[3]) * norm);
@@ -445,9 +445,9 @@ double chi2_dev(double dof, unsigned int seed[])
 	double term, tem, ans, U1, U2, Bx;
 	double b, d, y, p, q, dof1, frtest;
 	int i, n;
-	const double h_pi = 3.14159265358979;
-	const double h_dsqr2 = 0.707106781186547;
-	const double h_dsqrpi = 0.564189583547756;
+//	const double h_pi = 3.14159265358979;
+//	const double h_dsqr2 = 0.707106781186547;
+//	const double h_dsqrpi = 0.564189583547756;
 
 	if (dof <= 0.0) return -9999.99;
 	if (dof <= 2.0) {
@@ -460,8 +460,8 @@ double chi2_dev(double dof, unsigned int seed[])
 		//	Use Johnk's acceptance/rejection method that combines
 		//	the Beta distribution with the exponential dostribution
 		//	2 simuations with minimum efficiency .81 + 2 final simulations
-		//  See Wallace, N.D. (1974), “Computer Generation of Gamma Random Variates
-		//	with Non-integral Shape Parameters,” Communications of the Association
+		//  See Wallace, N.D. (1974), â€œComputer Generation of Gamma Random Variates
+		//	with Non-integral Shape Parameters,â€ Communications of the Association
 		//	for Computing Machinery (ACM) 17 (12), December 1974
 			term = 0.5 * dof;
 			U1 = rand_u01(seed);
@@ -485,8 +485,8 @@ double chi2_dev(double dof, unsigned int seed[])
 			//	Exponentials for dof = 2, 4, 6, 8, 10, 12
 			//	Gamma alpha, a = 1, 2, 3, 4, 5
 			//  Up to 6 simulations with efficiency of acceptance/rejection
-			//  See Wallace, N.D. (1974), “Computer Generation of Gamma Random Variates
-			//	with Non-integral Shape Parameters,” Communications of the Association
+			//  See Wallace, N.D. (1974), â€œComputer Generation of Gamma Random Variates
+			//	with Non-integral Shape Parameters,â€ Communications of the Association
 			//	for Computing Machinery (ACM) 17 (12), December 1974
 			double a = dof / 2;
 			bool is_int, is_half_int;
@@ -536,7 +536,7 @@ double chi2_dev(double dof, unsigned int seed[])
 		else {
 			if (dof <= 25) {
 			//	Cheng-Feast (1979) GKM1 ratio of uniform random numbers with acceptance/rejection
-			//  See Cheng, R.C.H., and G. M. Feast (1979), “Some Simple Gamma Variate Generators,”
+			//  See Cheng, R.C.H., and G. M. Feast (1979), â€œSome Simple Gamma Variate Generators,â€
 			//  Journal of the Royal Statistical Society, Series C (Applied Statistics), Vol. 28,
 			//  No. 3 (1979):  290-295.
 			//	consider GMK2 method in Cheng  Feast
@@ -561,8 +561,8 @@ double chi2_dev(double dof, unsigned int seed[])
 			}		//	end of else for if (dof <= 25)
 			else {
 			//	use normal approximation for cube root(chi-squared/dof), Hilferty-Wilson method
-			//	Wilson, E. B., and M. M. Hilferty. 1931. “The Distribution of Chi-Square.”
-			//	Proceedings of the National Academy of Sciences. USA 17 (12): 684–688
+			//	Wilson, E. B., and M. M. Hilferty. 1931. â€œThe Distribution of Chi-Square.â€
+			//	Proceedings of the National Academy of Sciences. USA 17 (12): 684â€“688
 				d = 1.0 - 2.0 / (9.0 * dof) + 80.0 / (2187.0 * dof * dof * dof);
 				b = sqrt(2.0 / (9.0 * dof) - 104.0 / (2187.0 * dof * dof * dof));
 				tem = d + b * sninvdev(seed);
@@ -587,9 +587,9 @@ double chi2dev_set(double dof, unsigned int seed[], double b, double d, double p
 	double term, tem, ans, U1, U2, Bx;
 	double dof2, y, q, frtest;
 	int i;
-	const double h_pi = 3.14159265358979;
-	const double h_dsqr2 = 0.707106781186547;
-	const double h_dsqrpi = 0.564189583547756;
+//	const double h_pi = 3.14159265358979;
+//	const double h_dsqr2 = 0.707106781186547;
+//	const double h_dsqrpi = 0.564189583547756;
 
 	if (dof <= 0.0) return -9999.99;
 
@@ -603,8 +603,8 @@ double chi2dev_set(double dof, unsigned int seed[], double b, double d, double p
 			//	Use Johnk's acceptance/rejection method that combines
 			//	the Beta distribution with the exponential distribution
 			//	2 simuations with minimum efficiency .81 + 2 final simulations
-			//  See Wallace, N.D. (1974), “Computer Generation of Gamma Random Variates
-			//	with Non-integral Shape Parameters,” Communications of the Association
+			//  See Wallace, N.D. (1974), â€œComputer Generation of Gamma Random Variates
+			//	with Non-integral Shape Parameters,â€ Communications of the Association
 			//	for Computing Machinery (ACM) 17 (12), December 1974
 			term = 0.5 * dof;
 			U1 = rand_u01(seed);
@@ -629,8 +629,8 @@ double chi2dev_set(double dof, unsigned int seed[], double b, double d, double p
 			//	Exponentials for dof = 2, 4, 6, 8, ...
 			//	Gamma alpha, a = 1, 2, 3, 4, 5
 			//  Up to 6 simulations with efficiency of acceptance/rejection
-			//  See Wallace, N.D. (1974), “Computer Generation of Gamma Random Variates
-			//	with Non-integral Shape Parameters,” Communications of the Association
+			//  See Wallace, N.D. (1974), â€œComputer Generation of Gamma Random Variates
+			//	with Non-integral Shape Parameters,â€ Communications of the Association
 			//	for Computing Machinery (ACM) 17 (12), December 1974
 			if (is_int) {
 			//	simulate using the sum of n exponentials
@@ -675,7 +675,7 @@ double chi2dev_set(double dof, unsigned int seed[], double b, double d, double p
 		else {
 			if (dof <= 25) {
 			//	Cheng-Feast (1979) GKM1 ratio of uniform random numbers with acceptance/rejection
-			//  See Cheng, R.C.H., and G. M. Feast (1979), “Some Simple Gamma Variate Generators,”
+			//  See Cheng, R.C.H., and G. M. Feast (1979), â€œSome Simple Gamma Variate Generators,â€
 			//  Journal of the Royal Statistical Society, Series C (Applied Statistics), Vol. 28,
 			//  No. 3 (1979):  290-295.
 			//	consider GMK2 method in Cheng  Feast
@@ -696,8 +696,8 @@ double chi2dev_set(double dof, unsigned int seed[], double b, double d, double p
 			}		//	end of else for if (dof <= 25)
 			else {
 			//	use normal approximation for cube root(chi-squared/dof), Hilferty-Wilson method
-			//	Wilson, E. B., and M. M. Hilferty. 1931. “The Distribution of Chi-Square.”
-			//	Proceedings of the National Academy of Sciences. USA 17 (12): 684–688
+			//	Wilson, E. B., and M. M. Hilferty. 1931. â€œThe Distribution of Chi-Square.â€
+			//	Proceedings of the National Academy of Sciences. USA 17 (12): 684â€“688
 				tem = d + b * sninvdev(seed);
 				ans = dof * tem * tem * tem;
 				if (ans < 0.0) ans = 0.0;
