@@ -8,4 +8,10 @@ freedom parameter is greater than or equal to 1.  If the degrees of freedom are 
 a quadratic normal.
 
 This repository contains the C++ code for running the 3 simulations methods and the simple Euler approximation, as well as the statistical 
-tests for the simulations.
+tests for the simulations.  The file ncChiSquaredSimulation_MRG32k3a.hpp is a header file with the code to run the QB, QE, and exact non-
+central chi squared simulation.  The file Test_NC_ChiSquaredSimulators.cpp is C++ code with a main program to run the statistical tests in
+Windows.  To run the full set of statistics, one must download and include the Boost library.  The Boost library function for the noncentral
+chi squared function is used to calculate the cumulative distribution function.  The .sln and .vcxproj are the files that can be used on 
+Windows to build the executable in Visual Studio.  The file Test_NC_ChiSquareSimulators_Linux.cpp is the versionof the C++ code with a main 
+program to run on Linux systems.  The makefile can be used on Linux to build the executable with Eclipse.
+
