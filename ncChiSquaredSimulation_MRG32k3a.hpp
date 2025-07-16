@@ -877,6 +877,7 @@ double simulateQB2Exp(double x0, unsigned int seed[], double b, double half_df,
 			A_pdf = exp(-0.5 * lambda_nc) / denom0;
 			//	use c * mean = lambda_nc + df here for x_mean
 			x_mean = (lambda_nc + 2.0 * half_df);
+			//	x1 = 0.2 here is a critical value for cx so that exp(-0.5*cx) is close to 1
 			x1 = 0.2;
 			F_x1 = (A_pdf / half_df) * pow(x1, half_df);
 			if (u <= F_x1 || u < 0.01) {
