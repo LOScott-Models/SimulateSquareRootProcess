@@ -51,7 +51,7 @@ int main()
 	double mu_Beta = 0.0, m2_Beta = 0.0, Beta_power = 0.0, QE_sig_dt2;
 	double sim_mean[8], sim_std[8], sim_m4[8], KS, AD, CvM;
 	char HeaderLine[500];
-    clock_t timestart, timeend;
+    	clock_t timestart, timeend;
 	//	default values for tests runs
 	iseed[0] = 394995;
 	iseed[1] = 45868;
@@ -84,7 +84,6 @@ int main()
 	if (fout3 == NULL) printf(" Cannot open output file TSimulatedDistributionFunctions.txt for writing output data \n");
 
 	fin = fopen("SquareRootProcessParams.csv", "r");
-//	if (fin== NULL) printf(" Cannot open output file SquareRootProcessParams.csv \n");
 	if (fin != NULL) {
 		fgets(HeaderLine, 200, fin);
 	//	err = fscanf(fin, "%lf,%lf,%lf,%lf,%lf", &kappa, &theta, &sigma, &lambda, &x0);
@@ -244,8 +243,8 @@ int main()
 		}
 	}
 
-    timeend = clock();
-    time1 = ((double) (timeend - timestart)) / CLOCKS_PER_SEC;
+    	timeend = clock();
+    	time1 = ((double) (timeend - timestart)) / CLOCKS_PER_SEC;
 
 
 	//	QB2Exp Method
@@ -270,8 +269,8 @@ int main()
 		Sims[nSim + i] = x;
 	}
 
-    timeend = clock();
-    time2 = ((double) (timeend - timestart)) / CLOCKS_PER_SEC;
+    	timeend = clock();
+    	time2 = ((double) (timeend - timestart)) / CLOCKS_PER_SEC;
 
 	printf(" maximum iterations with Quadratric Beta - Double Exponential method %i \n", max_iter);
 	fprintf(fout, " maximum iterations with Quadratric Beta - Double Exponential method %i \n", max_iter);
@@ -287,7 +286,6 @@ int main()
 	for (i = 0; i < 6; i++) rdseed[i] = iseed[i];
 
 	timestart = clock();
-//    time(&t_start);
 
 	for (i = 0; i < nSim; i++) {
 		x = x0;
@@ -299,8 +297,8 @@ int main()
 		Sims[2 * nSim + i] = x;
 	}
 
-    timeend = clock();
-    time3 = ((double) (timeend - timestart)) / CLOCKS_PER_SEC;
+    	timeend = clock();
+    	time3 = ((double) (timeend - timestart)) / CLOCKS_PER_SEC;
 
 	//	Euler approximation
 	printf(" Running simple Euler approximation \n");
@@ -324,8 +322,8 @@ int main()
 		Sims[3 * nSim + i] = x;
 	}
 
-    timeend = clock();
-    time4 = ((double) (timeend - timestart)) / CLOCKS_PER_SEC;
+    	timeend = clock();
+    	time4 = ((double) (timeend - timestart)) / CLOCKS_PER_SEC;
 
 	//	The following are used in the simulation of the exact non-central chi squared distribution
 	double log_Factorial[200], wksp[200];
@@ -365,8 +363,8 @@ int main()
 			Sims[5 * nSim + i] = x;
 		}
 
-	    timeend = clock();
-	    time5 = ((double) (timeend - timestart)) / CLOCKS_PER_SEC;
+	    	timeend = clock();
+	    	time5 = ((double) (timeend - timestart)) / CLOCKS_PER_SEC;
 
 		printf(" Runtimes: %s = %9.3f seconds \n", modelNames[5].data(), time5);
 		fprintf(fout, " Runtimes: %s = %9.3f seconds \n", modelNames[5].data(), time5);
@@ -396,8 +394,8 @@ int main()
 				}
 			}
 
-		    timeend = clock();
-		    double time6 = ((double) (timeend - timestart)) / CLOCKS_PER_SEC;
+		    	timeend = clock();
+		    	double time6 = ((double) (timeend - timestart)) / CLOCKS_PER_SEC;
 
 			printf(" Runtimes: %s = %9.3f seconds \n", modelNames[6].data(), time6);
 			fprintf(fout, " Runtimes: %s = %9.3f seconds \n", modelNames[6].data(), time6);
@@ -433,8 +431,8 @@ int main()
 		Sims[4 * nSim + i] = x;
 	}
 
-    timeend = clock();
-    time5 = ((double) (timeend - timestart)) / CLOCKS_PER_SEC;
+    	timeend = clock();
+    	time5 = ((double) (timeend - timestart)) / CLOCKS_PER_SEC;
 
 	printf(" Run time for simulating exact non-central chi squared over longer time interval %8.3f seconds \n\n", time5);
 	fprintf(fout, " Run time for simulating exact non-central chi squared over longer time interval %8.3f  seconds \n\n", time5);
