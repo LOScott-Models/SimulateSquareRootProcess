@@ -4,7 +4,7 @@ C++ code for simulating alternative methods for square root processes
 The alternative simulation methods are covered in the paper, "Alternative Methods for Simulating Square Root 
 Processes." The simulations methods include (1) the exact simulation of a noncentral chi squared, 
 (2) Andersen's quadratic-exponential (QE) method, (3) the quadratic beta double exponential method (QB2Exp) 
-method, and (4) the quadratic beta non-central chi squared 1 method (QBNC1). The QB2Expand QBNC1 methods have 
+method, and (4) the quadratic beta non-central chi squared 1 method (QBNC1). The QB2Exp and QBNC1 methods have 
 been developed in the paper. The QB2Exp and the QBNC1 methods use a quadratic function of a normal simulation 
 when the degrees of freedom parameter is greater than or equal to 1.  If the degrees of freedom are less than 
 1, the QB2Exp method alternates between the quadratic method and an approximation of the cumulative 
