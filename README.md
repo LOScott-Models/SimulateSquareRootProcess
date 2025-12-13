@@ -2,15 +2,15 @@
 C++ code for simulating alternative methods for square root processes
 
 The alternative simulation methods are covered in the paper, "Alternative Methods for Simulating Square Root 
-Processes." The simulations methods include (1) the exact simulation of a noncentral chi squared, 
-(2) Andersen's quadratic-exponential (QE) method, (3) the quadratic beta double exponential method (QB2Exp) 
-method, and (4) the quadratic beta non-central chi squared 1 method (QBNC1). The QB2Exp and QBNC1 methods have 
-been developed in the paper. The QB2Exp and the QBNC1 methods use a quadratic function of a normal simulation 
-when the degrees of freedom parameter is greater than or equal to 1.  If the degrees of freedom are less than 
-1, the QB2Exp method alternates between the quadratic method and an approximation of the cumulative 
-distribution function (CDF) using a beta distribution and two exponential distributions. The QBNC1 method 
-alternates between the quadratic method and a mixture of the beta distribution and the non-central chi squared
-distribution with one degree of freedom.
+Processes," forthcoming Communications in Statistics - Simulation and Computation, 2026. The simulations methods 
+include (1) the exact simulation of a noncentral chi squared, (2) Andersen's quadratic-exponential (QE) method, 
+(3) the quadratic beta double exponential method (QB2Exp) method, and (4) the quadratic beta non-central chi squared 
+1 method (QBNC1). The QB2Exp and QBNC1 methods have been developed in the paper. The QB2Exp and the QBNC1 methods 
+use a quadratic function of a normal simulation when the degrees of freedom parameter is greater than or equal to 1.  
+If the degrees of freedom are less than 1, the QB2Exp method alternates between the quadratic method and an 
+approximation of the cumulative distribution function (CDF) using a beta distribution and two exponential distributions.
+The QBNC1 method alternates between the quadratic method and a mixture of the beta distribution and the non-central 
+chi squared distribution with one degree of freedom.
 
 This repository contains the C++ code for running the 4 simulations methods and the simple Euler approximation, 
 as well as the statistical tests for the simulations. The file ncChiSquaredSimulation_MRG32k3a.hpp is a header 
